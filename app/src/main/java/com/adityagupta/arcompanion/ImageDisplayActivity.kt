@@ -1,8 +1,10 @@
 package com.adityagupta.arcompanion
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Matrix
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -20,7 +22,10 @@ class ImageDisplayActivity : AppCompatActivity() {
 
 
     lateinit var image: Bitmap
+    var words = mutableListOf<String>()
+    var coords = mutableListOf<Rect>()
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_display)
@@ -63,11 +68,33 @@ class ImageDisplayActivity : AppCompatActivity() {
             }
         }
 
+        viewBinding.cameraImage.setOnTouchListener { view, motionEvent ->
+            var x = motionEvent.x
+            var y = motionEvent.y
+            var index = 0
+            for (i in coords){
+                if(x > i.left && x < i.right){
+                    if(y > i.top && y < i.bottom){
+                        viewBinding.selectedWord.text = words[index]
+                        break
+                    }
+                }
+                index++
+            }
+
+
+
+            true
+        }
+
+
+
     }
 
 
 
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun processResultText(resultText: FirebaseVisionText) {
         if (resultText.textBlocks.size == 0) {
             Log.i("something", "no text found")
@@ -89,9 +116,17 @@ class ImageDisplayActivity : AppCompatActivity() {
                     val elementFrame = element.boundingBox
                     str += elementText
                     str += " "
+                    words.add(elementText)
+                    if (elementFrame != null) {
+                        coords.add(elementFrame)
+                    }
+
                 }
             }
         }
+
+        Log.i("wordlist", coords.toString())
+
 
         viewBinding.selectedWord.text = str
 
@@ -110,6 +145,15 @@ class ImageDisplayActivity : AppCompatActivity() {
             matrix,
             true
         );
+    }
+
+    fun getStatusBarHeight(): Int {
+        var result = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId)
+        }
+        return result
     }
 
 
