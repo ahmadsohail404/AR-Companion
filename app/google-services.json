@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "712980944573",
+    "project_id": "arcompanion-592fb",
+    "storage_bucket": "arcompanion-592fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712980944573:android:a3dbb0d40a5759df7e49d4",
+        "android_client_info": {
+          "package_name": "com.adityagupta.arcompanion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712980944573-famt0u0koa9gomigod8cveqko8u5t6q7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adityagupta.arcompanion",
+            "certificate_hash": "98b6a32c91e5f90dd6e08b2a7a2c5ee71612301b"
+          }
+        },
+        {
+          "client_id": "712980944573-30r4nt02spndl37gtqe7sbbbn6ub7si1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATnCFiaN3fmqkc7A0s6om4fK2cbRByURE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712980944573-30r4nt02spndl37gtqe7sbbbn6ub7si1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
