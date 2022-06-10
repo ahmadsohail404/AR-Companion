@@ -28,35 +28,44 @@ class ImageDisplayActivity : AppCompatActivity() {
         viewBinding = ActivityImageDisplayBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        var st = intent.getStringExtra("path")!!
-        var t = Uri.parse(st)
+        val st = intent.getStringExtra("path")!!
+        val t = Uri.parse(st)
         image = MediaStore.Images.Media.getBitmap(contentResolver, t)
 
+
         image = rotateImage(image, 90.0f)
-        viewBinding.imageView.setImageBitmap(image)
 
-        val image = FirebaseVisionImage.fromBitmap(image)
+        viewBinding.cameraImage.viewTreeObserver.addOnGlobalLayoutListener {
+            image = Bitmap.createScaledBitmap(image, viewBinding.cameraImage.getWidth(), viewBinding.cameraImage.getHeight(), true)
 
-        val detector = FirebaseVision.getInstance().onDeviceTextRecognizer
+            viewBinding.cameraImage.setImageBitmap(image)
 
-        detector.processImage(image)
-            .addOnSuccessListener { firebaseVisionText ->
-                processResultText(firebaseVisionText)
-            }
-            .addOnFailureListener {
-                Log.i("something", "failed")
-            }
+            val image = FirebaseVisionImage.fromBitmap(image)
 
-        viewBinding.selectedWord.setOnClickListener {
-            var query ="https://www.dictionary.com/browse/" +  viewBinding.selectedWord.text.toString().lowercase()
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(query)
+            val detector = FirebaseVision.getInstance().onDeviceTextRecognizer
+
+            detector.processImage(image)
+                .addOnSuccessListener { firebaseVisionText ->
+                    processResultText(firebaseVisionText)
+                }
+                .addOnFailureListener {
+                    Log.i("something", "failed")
+                }
+
+            viewBinding.selectedWord.setOnClickListener {
+                var query ="https://www.dictionary.com/browse/" +  viewBinding.selectedWord.text.toString().lowercase()
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(query)
+                    )
                 )
-            )
+            }
         }
+
     }
+
+
 
 
     private fun processResultText(resultText: FirebaseVisionText) {
@@ -65,14 +74,25 @@ class ImageDisplayActivity : AppCompatActivity() {
             return
         }
         var str = ""
+
         for (block in resultText.textBlocks) {
             val blockText = block.text
-            Log.i("bounding", block.text)
-            str += block.text
-            str += " "
-            Log.i("bounding", block.boundingBox.toString())
-
+            val blockCornerPoints = block.cornerPoints
+            val blockFrame = block.boundingBox
+            for (line in block.lines) {
+                val lineText = line.text
+                val lineCornerPoints = line.cornerPoints
+                val lineFrame = line.boundingBox
+                for (element in line.elements) {
+                    val elementText = element.text
+                    val elementCornerPoints = element.cornerPoints
+                    val elementFrame = element.boundingBox
+                    str += elementText
+                    str += " "
+                }
+            }
         }
+
         viewBinding.selectedWord.text = str
 
     }
