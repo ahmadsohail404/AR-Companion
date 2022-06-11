@@ -62,13 +62,17 @@ class ImageDisplayActivity : AppCompatActivity() {
                 }
 
             viewBinding.findMeaningButton.setOnClickListener {
-                var query ="https://www.dictionary.com/browse/" +  viewBinding.selectedWord.text.toString().lowercase()
+                /*var query ="https://www.dictionary.com/browse/" +  viewBinding.selectedWord.text.toString().lowercase()
                 startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse(query)
                     )
-                )
+                )*/
+
+                var intent = Intent(this, MeaningActivity::class.java)
+                intent.putExtra("word", viewBinding.selectedWord.text.toString())
+                startActivity(intent)
             }
 
             viewBinding.arButton.setOnClickListener {
