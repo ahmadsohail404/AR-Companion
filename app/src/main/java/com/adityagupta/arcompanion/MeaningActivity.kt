@@ -1,21 +1,22 @@
 package com.adityagupta.arcompanion
 
+import android.media.AudioManager
+import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.adityagupta.arcompanion.databinding.ActivityImageDisplayBinding
 import com.adityagupta.arcompanion.databinding.ActivityMeaningBinding
-import kotlinx.coroutines.Delay
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
+import java.io.IOException
 
 
 class MeaningActivity : AppCompatActivity() {
 
     private lateinit var viewBinding: ActivityMeaningBinding
+    lateinit var mediaPlayer: MediaPlayer
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,12 +44,42 @@ class MeaningActivity : AppCompatActivity() {
 
                     viewBinding.wordExample1.text =  result.body()?.get(0)?.meanings?.get(0)?.definitions?.get(0)?.example
 
+                    viewBinding.speaker.setOnClickListener {
+                        playAudio(result.body()?.get(0)?.phonetics?.get(0)?.audio)
+                    }
                     Log.i("some", result.body().toString())
                 })
 
 
             }
         }
+
+
+    }
+
+    private fun playAudio(audio: String?) {
+        val audioUrl = audio
+
+        // initializing media player
+        mediaPlayer = MediaPlayer()
+
+        // below line is use to set the audio
+        // stream type for our media player.
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+
+        // below line is use to set our
+        // url to our media player.
+        try {
+            mediaPlayer.setDataSource(audioUrl)
+            // below line is use to prepare
+            // and start our media player.
+            mediaPlayer.prepare()
+            mediaPlayer.start()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        // below line is use to display a toast message.
+        Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show()
     }
 
 
