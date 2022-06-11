@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:textColor="@color/black"
@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/selectedWord"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:text="Hello"
@@ -46,7 +46,7 @@
 
     <Button
         android:id="@+id/findMeaningButton"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="4dp"
@@ -62,7 +62,7 @@
 
     <Button
         android:id="@+id/arButton"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
         android:backgroundTint="@color/purple_500"
