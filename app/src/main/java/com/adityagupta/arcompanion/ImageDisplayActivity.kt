@@ -153,7 +153,7 @@ class ImageDisplayActivity : AppCompatActivity() {
                     val elementCornerPoints = element.cornerPoints
                     val elementFrame = element.boundingBox
 
-                    words.add(elementText)
+                    removeSpecialCharacter(elementText)?.let { words.add(it) }
                     if (elementFrame != null) {
                         coords.add(elementFrame)
                     }
@@ -191,6 +191,28 @@ class ImageDisplayActivity : AppCompatActivity() {
         return result
     }
 
+    fun removeSpecialCharacter(s: String): String? {
+        var s = s
+        var i = 0
+        while (i < s.length) {
+
+
+            // Finding the character whose
+            // ASCII value fall under this
+            // range
+            if (s[i] < 'A' || s[i] > 'Z' &&
+                s[i] < 'a' || s[i] > 'z'
+            ) {
+
+                // erase function to erase
+                // the character
+                s = s.substring(0, i) + s.substring(i + 1)
+                i--
+            }
+            i++
+        }
+        return s
+    }
 
 
 
