@@ -176,6 +176,4 @@ class CameraActivity : AppCompatActivity() {
                 }
             }.toTypedArray()
     }
-
-
 }

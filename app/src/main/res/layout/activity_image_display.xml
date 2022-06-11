@@ -16,14 +16,28 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/selectedWord"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="SELECTED TEXT"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/selectedWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cameraImage"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/selectedWord"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
         android:text="Hello"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/arButton"
-        app:layout_constraintEnd_toStartOf="@+id/findMeaningButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,42 +45,32 @@
 
     <Button
         android:id="@+id/findMeaningButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="4dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/purple_500"
         android:text="FIND MEANING"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/arButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/selectedWord"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cameraImage"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SELECTED TEXT"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/selectedWord"
-        app:layout_constraintStart_toStartOf="@+id/selectedWord"
-        app:layout_constraintTop_toTopOf="@+id/findMeaningButton"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/arButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/purple_500"
         android:enabled="true"
         android:text="AR MODEL"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/findMeaningButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/findMeaningButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/findMeaningButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
