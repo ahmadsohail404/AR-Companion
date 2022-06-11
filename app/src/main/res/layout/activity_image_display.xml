@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ImageDisplayActivity">
 
     <ImageView
@@ -20,8 +21,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/black"
         android:text="SELECTED TEXT"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/selectedWord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:text="Hello"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/arButton"
         app:layout_constraintEnd_toEndOf="parent"
