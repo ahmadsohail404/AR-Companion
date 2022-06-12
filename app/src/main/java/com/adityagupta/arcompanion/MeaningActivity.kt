@@ -1,7 +1,9 @@
 package com.adityagupta.arcompanion
 
+import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -25,33 +27,41 @@ class MeaningActivity : AppCompatActivity() {
         viewBinding = ActivityMeaningBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        var word = intent.getStringExtra("word")
-        Log.i("some", word!!)
+        val word = intent.getStringExtra("word")
+        var rootedWord = ""
 
-        val WordsApi = RetrofitHelper.getInstance().create(Api::class.java)
+        val oxfordApi = RetrofitHelper.getInstance().create(Api::class.java)
         GlobalScope.launch {
-            val result = WordsApi.getWordMeaning(word!!)
-            if (result != null) {
-                // Checking the results
-                runOnUiThread(Runnable {
-                    //TODO: Your job is here..!
-                    viewBinding.progressBar.visibility = View.INVISIBLE
-                    viewBinding.wordTitle.text = result!!.body()?.get(0)!!.word
-                    Log.i("some", result.body()?.get(0)?.word!!)
-                    viewBinding.wordPhonetic.text = result.body()?.get(0)?.phonetic
-                    viewBinding.wordDef1.text =
-                        result.body()?.get(0)?.meanings?.get(0)?.definitions?.get(0)?.definition
+            val result = oxfordApi.getRootWord(word?: "hello")
+            rootedWord = result.body()!!.results[0].lexicalEntries[0].inflectionOf[0].text.toString()
 
-                    viewBinding.wordExample1.text =  result.body()?.get(0)?.meanings?.get(0)?.definitions?.get(0)?.example
+            val finalResult =  oxfordApi.getDefinition(rootedWord?: "hello")
 
-                    viewBinding.speaker.setOnClickListener {
-                        playAudio(result.body()?.get(0)?.phonetics?.get(0)?.audio)
-                    }
-                    Log.i("some", result.body().toString())
-                })
+            runOnUiThread(Runnable {
+                //TODO: Your job is here..!
+                viewBinding.progressBar.visibility = View.INVISIBLE
 
+                viewBinding.wordTitle.text = finalResult.body()?.results?.get(0)?.word ?: "hello"
+                /*viewBinding.wordPhonetic.text = result.body()?.get(0)?.phonetic
+                viewBinding.wordDef1.text =
+                    result.body()?.get(0)?.meanings?.get(0)?.definitions?.get(0)?.definition
 
-            }
+                viewBinding.wordExample1.text =  result.body()?.get(0)?.meanings?.get(0)?.definitions?.get(0)?.example
+
+                viewBinding.speaker.setOnClickListener {
+                    playAudio(result.body()?.get(0)?.phonetics?.get(0)?.audio)
+                }
+                Log.i("some", result.body().toString())
+                viewBinding.textView15.setOnClickListener {
+                    var query ="https://www.dictionary.com/browse/" +  word.lowercase()
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(query)
+                            )
+                    )
+                }*/
+            })
         }
 
 
