@@ -38,29 +38,17 @@ class MeaningActivity : AppCompatActivity() {
             val finalResult =  oxfordApi.getDefinition(rootedWord?: "hello")
 
             runOnUiThread(Runnable {
-                //TODO: Your job is here..!
+
                 viewBinding.progressBar.visibility = View.INVISIBLE
-
+                viewBinding.consLayout5.visibility = View.VISIBLE
                 viewBinding.wordTitle.text = finalResult.body()?.results?.get(0)?.word ?: "hello"
-                /*viewBinding.wordPhonetic.text = result.body()?.get(0)?.phonetic
-                viewBinding.wordDef1.text =
-                    result.body()?.get(0)?.meanings?.get(0)?.definitions?.get(0)?.definition
-
-                viewBinding.wordExample1.text =  result.body()?.get(0)?.meanings?.get(0)?.definitions?.get(0)?.example
-
+                viewBinding.wordDef1.text = finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.senses?.get(0)?.definitions?.get(0) ?: "none"
+                viewBinding.wordExample1.text = finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.senses?.get(0)?.examples?.get(0)?.text ?: "none"
                 viewBinding.speaker.setOnClickListener {
-                    playAudio(result.body()?.get(0)?.phonetics?.get(0)?.audio)
+                    playAudio(finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.pronunciations?.get(0)?.audioFile.toString())
                 }
-                Log.i("some", result.body().toString())
-                viewBinding.textView15.setOnClickListener {
-                    var query ="https://www.dictionary.com/browse/" +  word.lowercase()
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse(query)
-                            )
-                    )
-                }*/
+
+                Log.i("something",finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.pronunciations?.get(0)?.audioFile.toString() )
             })
         }
 

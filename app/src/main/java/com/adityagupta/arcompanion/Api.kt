@@ -18,7 +18,7 @@ interface Api {
     @GET("lemmas/en/{word}")
     suspend fun getRootWord(@Path("word") word: String): Response<rootWord>
 
-    @GET("entries/en-us/{rootedWord}")
+    @GET("entries/en-gb/{rootedWord}")
     suspend fun getDefinition(@Path("rootedWord") word: String): Response<Definition>
 
 }

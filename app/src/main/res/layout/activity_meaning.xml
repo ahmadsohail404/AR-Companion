@@ -7,113 +7,126 @@
     android:background="@drawable/gradient_background"
     tools:context=".MeaningActivity">
 
-    <TextView
-        android:id="@+id/wordTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="48dp"
-        android:textFontWeight="700"
-        android:textSize="38dp"
-        android:textColor="@color/white"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/open_sans"
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/wordPhonetic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:fontFamily="@font/open_sans"
-        android:textColor="@color/white"
+        <TextView
+            android:id="@+id/wordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/white"
+            android:textFontWeight="700"
+            android:textSize="38dp"
 
-        android:text="həˈləʊ"
-        app:layout_constraintEnd_toEndOf="@+id/wordTitle"
-        app:layout_constraintStart_toStartOf="@+id/wordTitle"
-        app:layout_constraintTop_toBottomOf="@+id/wordTitle" />
+            app:layout_constraintEnd_toEndOf="@+id/consLayout5"
+            app:layout_constraintStart_toStartOf="@+id/consLayout5"
+            app:layout_constraintTop_toTopOf="@+id/consLayout5" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/wordPhonetic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:fontFamily="@font/open_sans"
+            android:text="həˈləʊ"
 
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/open_sans"
-        android:layout_marginLeft="17dp"
-        android:textFontWeight="700"
-        android:textColor="@color/white"
-        android:textSize="16dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/wordTitle"
+            app:layout_constraintStart_toStartOf="@+id/wordTitle"
+            app:layout_constraintTop_toBottomOf="@+id/wordTitle" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/definition"
+            android:textColor="@color/white"
+            android:textFontWeight="700"
 
 
-        android:text="@string/definition"
+            android:textSize="16dp"
 
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/speaker" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/consLayout5"
+            app:layout_constraintTop_toBottomOf="@+id/speaker" />
 
-    <TextView
-        android:id="@+id/wordDef1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:textColor="@color/white"
+        <TextView
+            android:id="@+id/wordDef1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="8dp"
 
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/open_sans"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:text="used as a greeting or to begin a phone conversation."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            android:fontFamily="@font/open_sans"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="used as a greeting or to begin a phone conversation."
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/consLayout5"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/consLayout5"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:fontFamily="@font/open_sans"
-        android:text="@string/example"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:textSize="16dp"
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/open_sans"
+            android:padding="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/example"
+            android:textColor="@color/white"
+            android:textSize="16dp"
 
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/wordDef1"
-        app:layout_constraintTop_toBottomOf="@+id/wordDef1" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/wordDef1"
+            app:layout_constraintTop_toBottomOf="@+id/wordDef1" />
 
-    <TextView
-        android:id="@+id/wordExample1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:fontFamily="@font/open_sans"
-        android:textColor="@color/white"
+        <TextView
+            android:id="@+id/wordExample1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:fontFamily="@font/open_sans"
+            android:text="used as a greeting or to begin a phone conversation."
 
-        android:text="used as a greeting or to begin a phone conversation."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/consLayout5"
+            app:layout_constraintStart_toStartOf="@+id/consLayout5"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-    <ImageView
-        android:id="@+id/speaker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        <ImageView
+            android:id="@+id/speaker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
 
-        app:layout_constraintEnd_toEndOf="@+id/wordPhonetic"
-        app:layout_constraintStart_toStartOf="@+id/wordPhonetic"
-        app:layout_constraintTop_toBottomOf="@+id/wordPhonetic"
-        app:srcCompat="@drawable/ic_baseline_volume_up_24" />
+            app:layout_constraintEnd_toEndOf="@+id/wordPhonetic"
+            app:layout_constraintStart_toStartOf="@+id/wordPhonetic"
+            app:layout_constraintTop_toBottomOf="@+id/wordPhonetic"
+            app:srcCompat="@drawable/ic_baseline_volume_up_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <ProgressBar
         android:id="@+id/progressBar"
