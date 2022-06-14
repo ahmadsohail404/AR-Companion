@@ -1,17 +1,20 @@
 package com.adityagupta.arcompanion
 
-import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.adityagupta.arcompanion.api.helpers.RetrofitHelper
+import com.adityagupta.arcompanion.api.helpers.WikipediaHelper
+import com.adityagupta.arcompanion.api.interfaces.Api
+import com.adityagupta.arcompanion.api.interfaces.WikipediaAPI
 import com.adityagupta.arcompanion.databinding.ActivityMeaningBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import retrofit2.create
 import java.io.IOException
 
 
@@ -31,6 +34,8 @@ class MeaningActivity : AppCompatActivity() {
         var rootedWord = ""
 
         val oxfordApi = RetrofitHelper.getInstance().create(Api::class.java)
+        val wikipediaAPI = WikipediaHelper.getInstance().create(WikipediaAPI::class.java)
+        
         GlobalScope.launch {
             val result = oxfordApi.getRootWord(word?: "hello")
             rootedWord = result.body()!!.results[0].lexicalEntries[0].inflectionOf[0].text.toString()

@@ -1,4 +1,4 @@
-package com.adityagupta.arcompanion
+package com.adityagupta.arcompanion.api.interfaces
 
 import com.adityagupta.data.WordJson
 import com.adityagupta.data.WordJsonItem
@@ -12,8 +12,6 @@ import retrofit2.http.Path
 
 
 interface Api {
-
-
 
     @GET("lemmas/en/{word}")
     suspend fun getRootWord(@Path("word") word: String): Response<rootWord>
