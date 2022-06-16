@@ -7,11 +7,14 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.adityagupta.arcompanion.api.helpers.RetrofitHelper
 import com.adityagupta.arcompanion.api.helpers.WikipediaHelper
 import com.adityagupta.arcompanion.api.interfaces.Api
 import com.adityagupta.arcompanion.api.interfaces.WikipediaAPI
 import com.adityagupta.arcompanion.databinding.ActivityMeaningBinding
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.create
@@ -23,6 +26,8 @@ class MeaningActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMeaningBinding
     lateinit var mediaPlayer: MediaPlayer
 
+    private val _wordTitle = MutableLiveData<String>()
+    val wordTitle : LiveData<String> = _wordTitle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +40,13 @@ class MeaningActivity : AppCompatActivity() {
 
         val oxfordApi = RetrofitHelper.getInstance().create(Api::class.java)
         val wikipediaAPI = WikipediaHelper.getInstance().create(WikipediaAPI::class.java)
-        
+
         GlobalScope.launch {
             val result = oxfordApi.getRootWord(word?: "hello")
             rootedWord = result.body()!!.results[0].lexicalEntries[0].inflectionOf[0].text.toString()
 
             val finalResult =  oxfordApi.getDefinition(rootedWord?: "hello")
-
+            val wikiResult = wikipediaAPI.getPageDetails(rootedWord, 1)
             runOnUiThread(Runnable {
 
                 viewBinding.progressBar.visibility = View.INVISIBLE
@@ -53,6 +58,13 @@ class MeaningActivity : AppCompatActivity() {
                     playAudio(finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.pronunciations?.get(0)?.audioFile.toString())
                 }
 
+                viewBinding.wikiTitle.text = wikiResult.body()!!.pages[0].title
+                viewBinding.wikiDescription.text = wikiResult.body()!!.pages[0].excerpt
+                if(wikiResult.body()!!.pages[0].thumbnail != null) {
+                    Picasso.with(applicationContext)
+                        .load("https:" + (wikiResult.body()!!.pages[0].thumbnail!!.url))
+                        .into(viewBinding.wikiImageView)
+                }
                 Log.i("something",finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.pronunciations?.get(0)?.audioFile.toString() )
             })
         }

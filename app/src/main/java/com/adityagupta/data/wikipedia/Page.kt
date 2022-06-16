@@ -6,6 +6,6 @@ data class Page(
     val id: Int,
     val key: String,
     val matched_title: Any,
-    val thumbnail: Thumbnail,
+    val thumbnail: Thumbnail?,
     val title: String
 )
