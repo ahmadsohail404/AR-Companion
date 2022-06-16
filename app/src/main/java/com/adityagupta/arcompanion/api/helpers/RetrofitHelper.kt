@@ -1,4 +1,4 @@
-package com.adityagupta.arcompanion
+package com.adityagupta.arcompanion.api.helpers
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
