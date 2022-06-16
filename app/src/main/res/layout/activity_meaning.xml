@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/wikiTitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -27,6 +27,7 @@
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/consLayout5" />
@@ -46,7 +47,7 @@
                 android:id="@+id/consLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -165,15 +166,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/wikiConstraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingTop="8dp"
                 android:paddingRight="16dp"
                 android:paddingBottom="16dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toBottomOf="@+id/wikiTitleText">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card"

@@ -1,5 +1,6 @@
 package com.adityagupta.arcompanion
 
+import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -51,11 +52,17 @@ class MeaningActivity : AppCompatActivity() {
 
                 viewBinding.progressBar.visibility = View.INVISIBLE
                 viewBinding.consLayout5.visibility = View.VISIBLE
+                viewBinding.wikiConstraintLayout.visibility = View.VISIBLE
+                viewBinding.wikiTitleText.visibility = View.VISIBLE
                 viewBinding.wordTitle.text = finalResult.body()?.results?.get(0)?.word ?: "hello"
                 viewBinding.wordDef1.text = finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.senses?.get(0)?.definitions?.get(0) ?: "none"
                 viewBinding.wordExample1.text = finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.senses?.get(0)?.examples?.get(0)?.text ?: "none"
                 viewBinding.speaker.setOnClickListener {
                     playAudio(finalResult.body()?.results?.get(0)?.lexicalEntries?.get(0)?.entries?.get(0)?.pronunciations?.get(0)?.audioFile.toString())
+                }
+
+                viewBinding.wikiConstraintLayout.setOnClickListener {
+                    startActivity(Intent(this@MeaningActivity, WikipediaWebViewActivity::class.java).putExtra("title", rootedWord))
                 }
 
                 viewBinding.wikiTitle.text = wikiResult.body()!!.pages[0].title
