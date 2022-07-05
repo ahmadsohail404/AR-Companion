@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.adityagupta.arcompanion">
+    package="sohail.arcompanion">
 
     <uses-feature android:name="android.hardware.camera.any" />
 
@@ -26,19 +26,19 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".WikipediaWebViewActivity"
+            android:name="com.sohail.arcompanion.WikipediaWebViewActivity"
             android:exported="false" />
         <activity
-            android:name=".MeaningActivity"
+            android:name="com.sohail.arcompanion.MeaningActivity"
             android:exported="false" />
         <activity
-            android:name=".ImageDisplayActivity"
+            android:name="com.sohail.arcompanion.ImageDisplayActivity"
             android:exported="false" />
         <activity
-            android:name=".CameraActivity"
+            android:name="com.sohail.arcompanion.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.sohail.arcompanion.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

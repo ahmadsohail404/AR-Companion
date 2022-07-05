@@ -63,7 +63,7 @@
         android:layout_width="fill_parent"
         android:layout_height="30dp"
         android:gravity="center"
-        android:text="ⒸTeam Bugs Apocalypse | 2022 "
+        android:text="ⒸSoftware Engineering Project | ISE B6 2022 "
         android:textColor="@color/white"
         android:textFontWeight="700"
         android:textSize="12sp"
